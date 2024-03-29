@@ -1,0 +1,32 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Окно авторизации" Height="450" Width="800" Foreground="#FF040404" Background="LightBlue" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Авторизация" FontSize="40" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Height="50" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Height="50" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="Не зарегистрированы? Зарегистрироваться" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" FontSize="18" TextAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <Button Content="Войти" Grid.Row="5" Grid.Column="1" Background="White" FontSize="18" Width="140" Height="50" VerticalAlignment="Top" FontWeight="Bold" RenderTransformOrigin="0.478,0.623" Margin="125,5,125,0" FontFamily="Times New Roman"/>
+        <Image Source="Pictures/free-icon-eye-535193.png" Grid.Column="2" Grid.Row="3" Height="50" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.879,0.545" Margin="10,0,0,0" />
+        <Image Source="Pictures/free-icon-padlock-4426964.png" Grid.Column="0" Grid.Row="3" Height="50" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" RenderTransformOrigin="0.068,0.519" Margin="0,0,10,0" />
+        <Image Source="Pictures/free-icon-user-1077114.png" Grid.Column="0" Grid.Row="2" Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Right" RenderTransformOrigin="0.068,0.519" Margin="0,0,10,0"/>
+    </Grid>
+</Window>
