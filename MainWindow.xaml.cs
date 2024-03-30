@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,5 +38,30 @@ namespace WpfApp1
             registration.Show();
             this.Hide();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+            var login = loginbox.Text;
+            var password = passwordbox.Text;
+
+            var context = new AppDbContext();
+
+            var user = context.Users.SingleOrDefault(x => x.login == login && x.Password == password);
+            if(user is null)
+            {
+                MessageBox.Show("Неправильный логин или пароль!");
+                return;
+            }
+            MessageBox.Show("Вы вошли в аккаунт!");
+            
+            Authorization authorization = new Authorization();
+
+            authorization.Show();
+            this.Hide();
+
+        }
+
     }
 }

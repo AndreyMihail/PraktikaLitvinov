@@ -23,9 +23,9 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TextBlock Text="Регистрация" FontSize="40" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Times New Roman"/>
-        <TextBox FontSize="18" Grid.Column="1" Grid.Row="2" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
-        <TextBox FontSize="18" Grid.Column="1" Grid.Row="3" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
-        <TextBox FontSize="18" Grid.Column="1" Grid.Row="4" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <TextBox x:Name="loginbox" FontSize="18" Grid.Column="1" Grid.Row="2" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <TextBox x:Name="mailbox" FontSize="18" Grid.Column="1" Grid.Row="3" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <TextBox x:Name="passwordbox" FontSize="18" Grid.Column="1" Grid.Row="4" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
         <TextBox FontSize="18" Grid.Column="1" Grid.Row="5" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
         <Image Source="Pictures/free-icon-user-1077114.png" Grid.Column="0" Grid.Row="2" Height="40" Width="40" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="0.068,0.519" Margin="0,0,10,0"/>
         <Image Source="Pictures/pngwing.com.png" Grid.Column="0" Grid.Row="3" Height="40" Width="40" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="0.068,0.519" Margin="0,0,10,0"/>
@@ -33,7 +33,7 @@
         <Image Source="Pictures/free-icon-padlock-4426964.png" Grid.Column="0" Grid.Row="5" Height="40" Width="40" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="0.068,0.519" Margin="0,0,10,0"/>
         <Image Source="Pictures/free-icon-eye-535193.png" Grid.Column="2" Height="40" Width="40" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" RenderTransformOrigin="0.879,0.545" Margin="10,0,0,0"/>
         <Image Source="Pictures/free-icon-eye-535193.png" Grid.Column="2" Height="40" Width="40" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" RenderTransformOrigin="0.879,0.545" Margin="10,0,0,0"/>
-        <Button Content="Зарегистрироваться" Background="White" Grid.Column="1" Grid.Row="6" FontSize="18" Height="50" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <Button Click="Button_Click"  Content="Зарегистрироваться" Background="White" Grid.Column="1" Grid.Row="6" FontSize="18" Height="50" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Times New Roman"/>
         <TextBlock Text="Зарегистрированы? Войдите" MouseLeftButtonDown="Button_MouseLeftButtonDown" Grid.Column="1" Grid.Row="7" FontSize="18" TextAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Times New Roman"/>
     </Grid>
 </Window>

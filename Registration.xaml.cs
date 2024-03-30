@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,6 +37,74 @@ namespace WpfApp1
 
             MainWindow.Show();
             this.Hide();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var login = loginbox.Text;
+            var pass = passwordbox.Text;
+            var context = new AppDbContext();
+            var email = mailbox.Text;
+
+            var user_exists = context.Users.FirstOrDefault(x => x.login == login);
+            if (user_exists is not null)
+            {
+                MessageBox.Show("Такой пользователь уже существует");
+                return;
+            }
+            var user = new User { login = login, Password = pass, Email = email };
+            context.Users.Add(user);
+            context.SaveChanges();
+            MessageBox.Show("Добро пожаловать!");
+
+            MainWindow MainWindow = new MainWindow();
+
+            MainWindow.Show();
+            this.Hide();
+        }
+
+        public static bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                
+                email = Regex.Replace(email, @"(@)(.+)$", DomainMapper,
+                                      RegexOptions.None, TimeSpan.FromMilliseconds(200));
+
+                
+                string DomainMapper(Match match)
+                {
+                    
+                    var idn = new IdnMapping();
+
+                    
+                    string domainName = idn.GetAscii(match.Groups[2].Value);
+
+                    return match.Groups[1].Value + domainName;
+                }
+            }
+            catch (RegexMatchTimeoutException e)
+            {
+                return false;
+            }
+            catch (ArgumentException e)
+            {
+                return false;
+            }
+
+            try
+            {
+                return Regex.IsMatch(email,
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
         }
     }
 }
