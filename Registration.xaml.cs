@@ -42,12 +42,12 @@ namespace WpfApp1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var login = Loginbox.Text;
-            var pass = passwordbox.Text;
+            var pass = passwordbox.Visibility == Visibility.Visible ? passwordbox.Password : passwordTextBlock.Text;
             var context = new AppDbContext();
             var email = mailbox.Text;
-            var proverka = passwordboxp.Text;
+            var proverka = passwordboxp.Visibility == Visibility.Visible ? passwordboxp.Password : passwordTextBlockp.Text;
 
-            if(login.Length == 0)
+            if (login.Length == 0)
             {
 
                 Loginbox.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -114,6 +114,42 @@ namespace WpfApp1
 
             MainWindow.Show();
             this.Hide();
+        }
+
+        private void Image_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            if (passwordbox.Visibility == Visibility.Visible)
+            {
+                passwordTextBlock.Text = passwordbox.Password;
+                passwordTextBlock.Visibility = Visibility.Visible;
+                passwordbox.Visibility = Visibility.Collapsed;
+                eyeImage1.Source = new BitmapImage(new Uri("Pictures/hidden_2355322.png", UriKind.Relative));
+            }
+            else
+            {
+                passwordbox.Password = passwordTextBlock.Text;
+                passwordTextBlock.Visibility = Visibility.Collapsed;
+                passwordbox.Visibility = Visibility.Visible;
+                eyeImage1.Source = new BitmapImage(new Uri("Pictures/free-icon-eye-535193.png", UriKind.Relative));
+            }
+        }
+
+        private void Image_MouseLeftButtonDown_2(object sender, MouseButtonEventArgs e)
+        {
+            if (passwordboxp.Visibility == Visibility.Visible)
+            {
+                passwordTextBlockp.Text = passwordboxp.Password;
+                passwordTextBlockp.Visibility = Visibility.Visible;
+                passwordboxp.Visibility = Visibility.Collapsed;
+                eyeImage2.Source = new BitmapImage(new Uri("Pictures/hidden_2355322.png", UriKind.Relative));
+            }
+            else
+            {
+                passwordboxp.Password = passwordTextBlockp.Text;
+                passwordTextBlockp.Visibility = Visibility.Collapsed;
+                passwordboxp.Visibility = Visibility.Visible;
+                eyeImage2.Source = new BitmapImage(new Uri("Pictures/free-icon-eye-535193.png", UriKind.Relative));
+            }
         }
     }
 }

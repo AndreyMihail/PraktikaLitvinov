@@ -2885,24 +2885,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\student\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Пользователь\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\student\\Desktop\\PraktikaLitvinov\\WpfApp1.csproj",
+      "projectUniqueName": "D:\\Пользователь\\Desktop\\PraktikaLitvinov\\WpfApp1.csproj",
       "projectName": "WpfApp1",
-      "projectPath": "C:\\Users\\student\\Desktop\\PraktikaLitvinov\\WpfApp1.csproj",
-      "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\student\\Desktop\\PraktikaLitvinov\\obj\\",
+      "projectPath": "D:\\Пользователь\\Desktop\\PraktikaLitvinov\\WpfApp1.csproj",
+      "packagesPath": "C:\\Users\\Пользователь\\.nuget\\packages\\",
+      "outputPath": "D:\\Пользователь\\Desktop\\PraktikaLitvinov\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Пользователь\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2967,7 +2962,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

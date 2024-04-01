@@ -44,7 +44,7 @@ namespace WpfApp1
 
 
             var login = loginbox.Text;
-            var password = passwordbox.Text;
+            var password = passwordbox.Visibility == Visibility.Visible ? passwordbox.Password : passwordTextBlock.Text;
             var mail = loginbox.Text;
 
             var context = new AppDbContext();
@@ -53,17 +53,35 @@ namespace WpfApp1
             if(user is null)
             {
                 loginbox.BorderBrush = new SolidColorBrush(Colors.Red);
+                passwordbox.BorderBrush = new SolidColorBrush(Colors.Red);
                 MessageBox.Show("Неправильный логин или пароль!");
                 return;
             }
             MessageBox.Show("Вы вошли в аккаунт!");
             
             Authorization authorization = new Authorization();
-
+            authorization.SetUserLogin(login);
             authorization.Show();
             this.Hide();
 
         }
 
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (passwordbox.Visibility == Visibility.Visible)
+            {
+                passwordTextBlock.Text = passwordbox.Password;
+                passwordTextBlock.Visibility = Visibility.Visible;
+                passwordbox.Visibility = Visibility.Collapsed;
+                eyeImage.Source = new BitmapImage(new Uri("Pictures/hidden_2355322.png", UriKind.Relative));
+            }
+            else
+            {
+                passwordbox.Password = passwordTextBlock.Text;
+                passwordTextBlock.Visibility = Visibility.Collapsed;
+                passwordbox.Visibility = Visibility.Visible;
+                eyeImage.Source = new BitmapImage(new Uri("Pictures/free-icon-eye-535193.png", UriKind.Relative));
+            }
+        }
     }
 }

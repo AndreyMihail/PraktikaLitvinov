@@ -11,6 +11,7 @@
     <None Remove="Pictures\free-icon-eye-535193.png" />
     <None Remove="Pictures\free-icon-padlock-4426964.png" />
     <None Remove="Pictures\free-icon-user-1077114.png" />
+    <None Remove="Pictures\hidden_2355322.png" />
     <None Remove="Pictures\pngwing.com.png" />
   </ItemGroup>
 
@@ -27,6 +28,7 @@
     <Resource Include="Pictures\free-icon-eye-535193.png" />
     <Resource Include="Pictures\free-icon-padlock-4426964.png" />
     <Resource Include="Pictures\free-icon-user-1077114.png" />
+    <Resource Include="Pictures\hidden_2355322.png" />
     <Resource Include="Pictures\pngwing.com.png" />
   </ItemGroup>
 

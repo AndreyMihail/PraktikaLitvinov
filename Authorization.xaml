@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Authorization" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+        Title="Authorization" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen"  Background="LightBlue">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="WelcomeTextBlock" FontSize="40" FontWeight="Bold" FontFamily="Times New Roman" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
     </Grid>
 </Window>

@@ -19,6 +19,7 @@ namespace WpfApp1
     /// </summary>
     public partial class Authorization : Window
     {
+        public string UserLogin { get; set; }
         public Authorization()
         {
             InitializeComponent();
@@ -27,6 +28,11 @@ namespace WpfApp1
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Environment.Exit(0);
+        }
+        public void SetUserLogin(string login)
+        {
+            UserLogin = login;
+            WelcomeTextBlock.Text = $"Здравствуйте, {UserLogin}!";
         }
     }
 }
