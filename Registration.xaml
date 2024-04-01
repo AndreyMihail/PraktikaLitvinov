@@ -23,10 +23,10 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TextBlock Text="Регистрация" FontSize="40" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Times New Roman"/>
-        <TextBox x:Name="loginbox" FontSize="18" Grid.Column="1" Grid.Row="2" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <TextBox Name="Loginbox" FontSize="18" Grid.Column="1" Grid.Row="2" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
         <TextBox x:Name="mailbox" FontSize="18" Grid.Column="1" Grid.Row="3" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
         <TextBox x:Name="passwordbox" FontSize="18" Grid.Column="1" Grid.Row="4" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
-        <TextBox FontSize="18" Grid.Column="1" Grid.Row="5" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <TextBox x:Name="passwordboxp" FontSize="18" Grid.Column="1" Grid.Row="5" Height="40" FontWeight="Bold" FontFamily="Times New Roman"/>
         <Image Source="Pictures/free-icon-user-1077114.png" Grid.Column="0" Grid.Row="2" Height="40" Width="40" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="0.068,0.519" Margin="0,0,10,0"/>
         <Image Source="Pictures/pngwing.com.png" Grid.Column="0" Grid.Row="3" Height="40" Width="40" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="0.068,0.519" Margin="0,0,10,0"/>
         <Image Source="Pictures/free-icon-padlock-4426964.png" Grid.Column="0" Grid.Row="4" Height="40" Width="40" VerticalAlignment="Center" HorizontalAlignment="Right" RenderTransformOrigin="0.068,0.519" Margin="0,0,10,0"/>
