@@ -132,3 +132,7 @@ D:\Пользователь\Desktop\PraktikaLitvinov\obj\Debug\net7.0-windows7.0
 D:\Пользователь\Desktop\PraktikaLitvinov\obj\Debug\net7.0-windows7.0\WpfApp1.pdb
 D:\Пользователь\Desktop\PraktikaLitvinov\obj\Debug\net7.0-windows7.0\WpfApp1.genruntimeconfig.cache
 D:\Пользователь\Desktop\PraktikaLitvinov\obj\Debug\net7.0-windows7.0\ref\WpfApp1.dll
+D:\Пользователь\Desktop\PraktikaLitvinov\obj\Debug\net7.0-windows7.0\MainWindow1.g.cs
+D:\Пользователь\Desktop\PraktikaLitvinov\obj\Debug\net7.0-windows7.0\MainWindow1.baml
+D:\Пользователь\Desktop\PraktikaLitvinov\obj\Debug\net7.0-windows7.0\Kabinet.g.cs
+D:\Пользователь\Desktop\PraktikaLitvinov\obj\Debug\net7.0-windows7.0\Kabinet.baml

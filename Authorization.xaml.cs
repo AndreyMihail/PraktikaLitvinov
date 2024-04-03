@@ -34,5 +34,24 @@ namespace WpfApp1
             UserLogin = login;
             WelcomeTextBlock.Text = $"Здравствуйте, {UserLogin}!";
         }
+
+        private void Kabinet_Click(object sender, RoutedEventArgs e)
+        {
+            using (var context = new AppDbContext())
+            {
+                var user = context.Users.SingleOrDefault(u => u.login == UserLogin);
+
+                if (user != null)
+                {
+                    Kabinet kabinet = new Kabinet(user);
+                    kabinet.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь не найден.");
+                }
+            }
+        }
     }
 }

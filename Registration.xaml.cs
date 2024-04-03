@@ -24,6 +24,10 @@ namespace WpfApp1
         public Registration()
         {
             InitializeComponent();
+            Loginbox.Text = (string)Loginbox.Tag;
+            mailbox.Text = (string)mailbox.Tag;
+            passwordbox.Password = (string)passwordbox.Tag;
+            passwordboxp.Password = (string)passwordboxp.Tag;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -44,67 +48,91 @@ namespace WpfApp1
             var login = Loginbox.Text;
             var pass = passwordbox.Visibility == Visibility.Visible ? passwordbox.Password : passwordTextBlock.Text;
             var context = new AppDbContext();
-            var email = mailbox.Text;
+            string email = mailbox.Text;
             var proverka = passwordboxp.Visibility == Visibility.Visible ? passwordboxp.Password : passwordTextBlockp.Text;
 
-            if (login.Length == 0)
+            if (string.IsNullOrWhiteSpace(login))
             {
-
-                Loginbox.BorderBrush = new SolidColorBrush(Colors.Red);
+                MarkTextBoxAsInvalid(Loginbox);
                 MessageBox.Show("Укажите логин.");
                 return;
             }
             else if (login.Length < 6)
             {
-                Loginbox.BorderBrush = new SolidColorBrush(Colors.Red);
+                MarkTextBoxAsInvalid(Loginbox);
                 MessageBox.Show("Логин должен состоять из 6 символов.");
                 return;
             }
-            if (email.Length == 0)
+            else
             {
-                mailbox.BorderBrush = new SolidColorBrush(Colors.Red);
-                MessageBox.Show("Укажите почту.");
+                MarkTextBoxAsValid(Loginbox);
+            }
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MarkTextBoxAsInvalid(mailbox);
+                MessageBox.Show("Введите адрес электронной почты.");
                 return;
             }
-            else if (!Regex.IsMatch(email, @"[@]"))
+            else if (!email.Contains("@"))
             {
-                mailbox.BorderBrush = new SolidColorBrush(Colors.Red);
-                MessageBox.Show("Неккоретно введена почта.");
+                MarkTextBoxAsInvalid(mailbox);
+                MessageBox.Show("Адрес электронной почты должен содержать символ '@'.");
                 return;
             }
-            if (pass.Length == 0)
+            else if (!Regex.IsMatch(email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
             {
-                passwordbox.BorderBrush = new SolidColorBrush(Colors.Red);
+                MarkTextBoxAsInvalid(mailbox);
+                MessageBox.Show("Неверный формат адреса электронной почты.");
+                return;
+            }
+            else
+            {
+                MarkTextBoxAsValid(mailbox);
+            }
+
+            if (string.IsNullOrWhiteSpace(pass))
+            {
+                MarkTextBoxAsInvalid(passwordbox);
                 MessageBox.Show("Укажите пароль.");
                 return;
             }
             else if (pass.Length < 6)
             {
-                passwordbox.BorderBrush = new SolidColorBrush(Colors.Red);
+                MarkTextBoxAsInvalid(passwordbox);
                 MessageBox.Show("Пароль должен содержать не менее 6 символов.");
                 return;
             }
-            else if(!Regex.IsMatch(pass, @"[!@#$%^&*()_+]"))
+            else if (!Regex.IsMatch(pass, @"[!@#$%^&*()_+]"))
             {
-                passwordbox.BorderBrush = new SolidColorBrush(Colors.Red);
-                MessageBox.Show("В пароле должен быть хотя-бы 1 специальный символ.");
+                MarkTextBoxAsInvalid(passwordbox);
+                MessageBox.Show("В пароле должен быть хотя бы 1 специальный символ.");
                 return;
             }
-            else if (proverka != pass)
+            else
             {
-                passwordbox.BorderBrush = new SolidColorBrush(Colors.Red);
-                passwordboxp.BorderBrush = new SolidColorBrush(Colors.Red);
-                MessageBox.Show("Пароль не сходится");
+                MarkTextBoxAsValid(passwordbox);
+            }
+
+            if (proverka != pass)
+            {
+                MarkTextBoxAsInvalid(passwordbox);
+                MarkTextBoxAsInvalid(passwordboxp);
+                MessageBox.Show("Пароль не сходится.");
                 return;
+            }
+            else
+            {
+                MarkTextBoxAsValid(passwordboxp);
             }
 
             var user_exists = context.Users.FirstOrDefault(x => x.login == login);
             if (user_exists is not null)
             {
-                MessageBox.Show("Такой пользователь уже существует");
+                MessageBox.Show("Такой пользователь уже существует.");
                 return;
             }
-            
+
             var user = new User { login = login, Password = pass, Email = email };
             context.Users.Add(user);
             context.SaveChanges();
@@ -116,40 +144,86 @@ namespace WpfApp1
             this.Hide();
         }
 
-        private void Image_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        private void MarkTextBoxAsInvalid(Control textBox)
         {
-            if (passwordbox.Visibility == Visibility.Visible)
-            {
-                passwordTextBlock.Text = passwordbox.Password;
-                passwordTextBlock.Visibility = Visibility.Visible;
-                passwordbox.Visibility = Visibility.Collapsed;
-                eyeImage1.Source = new BitmapImage(new Uri("Pictures/hidden_2355322.png", UriKind.Relative));
-            }
-            else
-            {
-                passwordbox.Password = passwordTextBlock.Text;
-                passwordTextBlock.Visibility = Visibility.Collapsed;
-                passwordbox.Visibility = Visibility.Visible;
-                eyeImage1.Source = new BitmapImage(new Uri("Pictures/free-icon-eye-535193.png", UriKind.Relative));
-            }
+            textBox.BorderBrush = new SolidColorBrush(Colors.Red);
         }
 
-        private void Image_MouseLeftButtonDown_2(object sender, MouseButtonEventArgs e)
+        private void MarkTextBoxAsValid(Control textBox)
         {
-            if (passwordboxp.Visibility == Visibility.Visible)
+            textBox.BorderBrush = new SolidColorBrush(Colors.Black);
+        }
+
+        private void Image_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
             {
-                passwordTextBlockp.Text = passwordboxp.Password;
-                passwordTextBlockp.Visibility = Visibility.Visible;
-                passwordboxp.Visibility = Visibility.Collapsed;
-                eyeImage2.Source = new BitmapImage(new Uri("Pictures/hidden_2355322.png", UriKind.Relative));
+                if (passwordbox.Visibility == Visibility.Visible)
+                {
+                    passwordTextBlock.Text = passwordbox.Password;
+                    passwordTextBlock.Visibility = Visibility.Visible;
+                    passwordbox.Visibility = Visibility.Collapsed;
+                    eyeImage1.Source = new BitmapImage(new Uri("Pictures/hidden_2355322.png", UriKind.Relative));
+                }
+                else
+                {
+                    passwordbox.Password = passwordTextBlock.Text;
+                    passwordTextBlock.Visibility = Visibility.Collapsed;
+                    passwordbox.Visibility = Visibility.Visible;
+                    eyeImage1.Source = new BitmapImage(new Uri("Pictures/free-icon-eye-535193.png", UriKind.Relative));
+                }
             }
-            else
+
+            private void Image_MouseLeftButtonDown_2(object sender, MouseButtonEventArgs e)
             {
-                passwordboxp.Password = passwordTextBlockp.Text;
-                passwordTextBlockp.Visibility = Visibility.Collapsed;
-                passwordboxp.Visibility = Visibility.Visible;
-                eyeImage2.Source = new BitmapImage(new Uri("Pictures/free-icon-eye-535193.png", UriKind.Relative));
+                if (passwordboxp.Visibility == Visibility.Visible)
+                {
+                    passwordTextBlockp.Text = passwordboxp.Password;
+                    passwordTextBlockp.Visibility = Visibility.Visible;
+                    passwordboxp.Visibility = Visibility.Collapsed;
+                    eyeImage2.Source = new BitmapImage(new Uri("Pictures/hidden_2355322.png", UriKind.Relative));
+                }
+                else
+                {
+                    passwordboxp.Password = passwordTextBlockp.Text;
+                    passwordTextBlockp.Visibility = Visibility.Collapsed;
+                    passwordboxp.Visibility = Visibility.Visible;
+                    eyeImage2.Source = new BitmapImage(new Uri("Pictures/free-icon-eye-535193.png", UriKind.Relative));
+                }
+            }
+            private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+            {
+                TextBox textBox = (TextBox)sender;
+                if (textBox.Text == (string)textBox.Tag)
+                {
+                    textBox.Text = "";
+                }
+            }
+
+            private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+            {
+                TextBox textBox = (TextBox)sender;
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = (string)textBox.Tag;
+                }
+            }
+
+            private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
+            {
+                PasswordBox passwordBox = (PasswordBox)sender;
+                if (passwordBox.Password == (string)passwordBox.Tag)
+                {
+                    passwordBox.Password = "";
+                }
+            }
+
+            private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+            {
+                PasswordBox passwordBox = (PasswordBox)sender;
+                if (string.IsNullOrWhiteSpace(passwordBox.Password))
+                {
+                    passwordBox.Password = (string)passwordBox.Tag;
+                }
             }
         }
     }
-}
+
